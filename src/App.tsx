@@ -1,25 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Grid from "./components/grid/Grid";
+import Header from "./components/Header";
+import Popup from "./components/Popup";
+import { selectPopup } from "./redux/reducers/popupReducer";
+import { useAppSelector } from "./redux/store";
 
 function App() {
+  const popupVisible = useAppSelector(selectPopup);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      <Grid />
+
+      {popupVisible && <Popup />}
+    </>
   );
 }
 
